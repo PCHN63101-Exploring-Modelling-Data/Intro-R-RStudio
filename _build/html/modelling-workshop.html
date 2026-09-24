@@ -1,0 +1,1135 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>PCHN63101 Statistical Modelling Workshop &#8212; The Principles of Statistical Modelling</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/test.css?v=90b7ad94" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'modelling-workshop';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="0.intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="The Principles of Statistical Modelling - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="The Principles of Statistical Modelling - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="0.intro.html">
+                    Week 1: Introduction to R
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1.What-is-R.html">What is R?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.The-RStudio-Environment.html">RStudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.Objects.html">Objects and assignment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.Vectors.html">Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.Functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary.html">Summary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/PCHN63101-Advanced-Data-Skills/principles-stat-modelling" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/PCHN63101-Advanced-Data-Skills/principles-stat-modelling/issues/new?title=Issue%20on%20page%20%2Fmodelling-workshop.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/modelling-workshop.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>PCHN63101 Statistical Modelling Workshop</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-variance">Understanding Variance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sources-of-variance">Sources of Variance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variables-as-variance-generators">Random Variables as Variance Generators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-outcome-example">Discrete Outcome Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-outcome-example">Continuous Outcome Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#determining-distributions-from-data">Determining Distributions from Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-choose-a-distribution">How Do We Choose a Distribution?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-check-the-distribution">How Do We Check the Distribution?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if-we-are-wrong">What If We Are Wrong?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-functions-and-variance-functions">Mean Functions and Variance Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normal-example">Normal Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelling-an-experimental-manipulation">Modelling an Experimental Manipulation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelling-a-continuous-relationship">Modelling a Continuous Relationship</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binomial-example">Binomial Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Modelling an Experimental Manipulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pchn63101-statistical-modelling-workshop">
+<h1>PCHN63101 Statistical Modelling Workshop<a class="headerlink" href="#pchn63101-statistical-modelling-workshop" title="Link to this heading">#</a></h1>
+<p>In the accompanying lesson to this workshop we explored the general concept of a statistical model as a method of capturing the variance inherent within a dataset. We first saw how to define a descriptive measure of variance, before exploring how this notion of random variation can be formalised using concepts from the world of <em>probability</em>. Specifically, every value we measure is conceptualised as a random draw from a particular probability distribution. This distribution provides the <em>model</em> of our data-generating process and thus formalises the probabilistic behaviour of our measurements. The shape of every probability distribution is controlled by a number of <em>parameters</em> that, either directly or indirectly, inform the <em>expected value</em> and <em>variance</em> of the distribution. These can be thoughts of as the <em>most probable</em> value and the <em>width</em>. A statistical model is then concerned with assuming some population distribution for a given data set and then connecting the parameters of the distribution to the data via a <em>mean function</em> and a <em>variance</em> function.</p>
+<p>At present, some of these ideas may feel a bit abstract. However, over the coming weeks we will start to see them put into action and all this information should become clearer. In this workshop, the focus will be on providing more intuition about all these topics by demonstrating some of these ideas in code. This will allow you to play around with each idea, providing a less abstract feeling to the concept by observing how the output of the code changes with different inputs. In general, playing with code is one of the <em>best</em> ways for gaining intuition about many mathematical concepts.</p>
+<section id="understanding-variance">
+<h2>Understanding Variance<a class="headerlink" href="#understanding-variance" title="Link to this heading">#</a></h2>
+<p>To begin, we will start with the basic concept of variance as the degree to which measured data points <em>differ</em> from each other. You should understand from the lesson one way in which we can capture the degree of variation, through the calculation of the sample variance. The equation for the sample variance is</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Var}\left(y\right) = \frac{\sum\left(y - \bar{y}\right)^{2}}{n-1}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(n\)</span> indicates the sample size, <span class="math notranslate nohighlight">\(\bar{y}\)</span> indicates the mean and the symbol <span class="math notranslate nohighlight">\(\Sigma\)</span> indicates a sum across all the data points (we will explain this notation in more detail in a future lesson). Although not the only conceivable way of capturing how much data varies, this is the formal definition of <em>variance</em> within statistics. In the plots below, we can see how this value scales with our visual intuition about <em>variation</em> as the <em>spread of values around 0</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">0</span><span class="o">:</span><span class="m">3</span><span class="p">){</span>
+<span class="w">   </span><span class="n">y</span><span class="w">      </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="o">=</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="o">=</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="m">5</span><span class="p">))</span>
+<span class="w">   </span><span class="n">sigma2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="w">   </span><span class="nf">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">-10</span><span class="p">,</span><span class="m">10</span><span class="p">),</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;var=&quot;</span><span class="p">,</span><span class="nf">round</span><span class="p">(</span><span class="n">sigma2</span><span class="p">,</span><span class="m">3</span><span class="p">)))</span>
+<span class="w">   </span><span class="nf">abline</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="m">0</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/b08eca208aa926d67017d96cb5a8a03fd0ac759394afd39752339d3547b917f6.png"><img alt="_images/b08eca208aa926d67017d96cb5a8a03fd0ac759394afd39752339d3547b917f6.png" src="_images/b08eca208aa926d67017d96cb5a8a03fd0ac759394afd39752339d3547b917f6.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/f716f845637e326c872fe2f97d47e1cc3edb479f38baca97904f8e4af1d79d08.png"><img alt="_images/f716f845637e326c872fe2f97d47e1cc3edb479f38baca97904f8e4af1d79d08.png" src="_images/f716f845637e326c872fe2f97d47e1cc3edb479f38baca97904f8e4af1d79d08.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/c5f9df21deb8e796c80f9f96142db38e0dad03bea424129d4bdbd93dbe45dfa8.png"><img alt="_images/c5f9df21deb8e796c80f9f96142db38e0dad03bea424129d4bdbd93dbe45dfa8.png" src="_images/c5f9df21deb8e796c80f9f96142db38e0dad03bea424129d4bdbd93dbe45dfa8.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/b4740bfa6dd0c05878620bbf1849cfc706e662a7e91a4eaa50ef2502670f60f3.png"><img alt="_images/b4740bfa6dd0c05878620bbf1849cfc706e662a7e91a4eaa50ef2502670f60f3.png" src="_images/b4740bfa6dd0c05878620bbf1849cfc706e662a7e91a4eaa50ef2502670f60f3.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<div class="alert alert-block alert-info"> 
+<b>ACTIVITY</b> Try replacing the use of the <code>var()</code> function above with the full equation for the sample variance. Check the output against the values given by <code>var()</code> to make sure you are correct. (HINT: if you are using the equation above, you can replace &Sigma; with the <code>sum()</code> function and &#563; with the <code>mean()</code> function).
+</div></section>
+<section id="sources-of-variance">
+<h2>Sources of Variance<a class="headerlink" href="#sources-of-variance" title="Link to this heading">#</a></h2>
+<p>Although we can now see how variance is captured, this is only ever a precursor to trying to <em>explain</em> variance. A core concept here is that data can vary for <em>two</em> reasons: systematic patterns <em>or</em> random noise. To see this, consider the code and plots below</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">666</span><span class="p">)</span>
+<span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">)</span>
+
+<span class="n">y1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w">                 </span><span class="c1"># pure noise</span>
+<span class="n">y2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="m">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0.9</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1.68</span><span class="p">)</span><span class="w"> </span><span class="c1"># linear pattern + pure noise</span>
+
+<span class="n">var1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">var</span><span class="p">(</span><span class="n">y1</span><span class="p">),</span><span class="m">2</span><span class="p">)</span>
+<span class="n">var2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">var</span><span class="p">(</span><span class="n">y2</span><span class="p">),</span><span class="m">2</span><span class="p">)</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y1</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;variance=&quot;</span><span class="p">,</span><span class="n">var1</span><span class="p">))</span><span class="w"> </span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y2</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;variance=&quot;</span><span class="p">,</span><span class="n">var2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/241cc6322ca9ed7211a9457ad2c8a0849892cba680d61e4a8b529a4ba87cf8fd.png"><img alt="_images/241cc6322ca9ed7211a9457ad2c8a0849892cba680d61e4a8b529a4ba87cf8fd.png" src="_images/241cc6322ca9ed7211a9457ad2c8a0849892cba680d61e4a8b529a4ba87cf8fd.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/66f933b3d028bb1307ee5984b56d8cd752b45428690ba647c9caac6c3e120c2f.png"><img alt="_images/66f933b3d028bb1307ee5984b56d8cd752b45428690ba647c9caac6c3e120c2f.png" src="_images/66f933b3d028bb1307ee5984b56d8cd752b45428690ba647c9caac6c3e120c2f.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>The first plot contains random noise drawn from a normal distribution, completely unrelated to the predictor variable <span class="math notranslate nohighlight">\(x\)</span>. The second plot contains a linear pattern between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>, with some random normal noise added. Both sets of data have nearly the same value in terms of sample variance, yet the second plot shows a much clearer pattern between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>. This highlights that variance itself cannot tell us whether the variation is systematic or random. That is the job of the statistical model. Any clear patterns within the data represent the <em>predictable</em> element of the variance, whereas any additional random noise represents the <em>unpredictable</em> element of the variance. The job of any statistical model is therefore to take the total amount of variance and <em>partition</em> it into the amount attributable to predictable patterns and the amount attributable to random noise.</p>
+<div class="alert alert-block alert-info"> 
+<b>ACTIVITY</b> Imagine that the second plot above corresponds to an investigation into how mood, as measured using a questionnaire, improves based on the number of hours sleep someone has the night before. Redraw the plot so that the x-axis is labelled <code>hours of sleep</code> and the y-axis is labelled <code>mood</code>. After collecting data from 100 different people, there appears to be some universal pattern between hours of sleep and mood. However, the relationship is not perfect. Why is that? Can you think of different reasons why we still have an <i>unpredictable</i> element to these data?
+</div></section>
+<section id="random-variables-as-variance-generators">
+<h2>Random Variables as Variance Generators<a class="headerlink" href="#random-variables-as-variance-generators" title="Link to this heading">#</a></h2>
+<p>Knowing that variance, both systematic and random, is the primary information we want to capture leads to the obvious question of <em>where does variance come from</em>? Although the true reasons for variation in measurements are likely to be deep, complex and data-dependent, this question can be addressed in a more general fashion by appealing to probability. The reason our measurements vary is because the phenomena we are measuring is a <em>random variable</em>. By definition, this means that every time we make an observation, the value will change. Although this change is <em>unpredictable</em> in the short-term, it has a regularity and pattern in the long-term, as governed by its <em>probability distribution</em>. The parameters of the probability distribution control its shape and thus control both the <em>predictable</em> and <em>unpredictable</em> elements of the data.</p>
+<p>When conceptualising our measurements as realisations of a random variable, we can think of a random variable as a <em>variance generator</em>. The distribution associated with the random variable tells us, in an idealised mathematical fashion, <em>where the data came from</em>. Every time we take a measurement of that random variable, we are taking a random draw from that distribution. This process, no matter the actual real-world physical phenomena that govern it, creates the variance that we see in our data. Because of this, our interest lies in the nature of the distribution that has generated our data. If we know the form of the distribution and its parameter values, we can answer all questions about where our data have come from and thus know everything we need to know about our phenomena of interest.</p>
+<section id="discrete-outcome-example">
+<h3>Discrete Outcome Example<a class="headerlink" href="#discrete-outcome-example" title="Link to this heading">#</a></h3>
+<p>We will now explore some of the ideas of a random variable in a little more detail. To start, we will focus on a <em>discrete</em> random variable associated with a <em>discrete</em> probability distribution.</p>
+<p>Imagine an experiment where subjects are exposed to a series of very faint auditory stimuli. After each presentation, they are asked whether they heard anything or not. In total, each subject takes part in 20 trials, where the outcome variable is a count of the number of “yes” responses. Very generally, any variable that represents a <em>count</em> of the total number of one type of response in a series of binary trials (e.g. responding “yes” or “no”) can be modelled as a <em>binomial random variate</em> of the form</p>
+<div class="math notranslate nohighlight">
+\[
+y_{i} \sim \mathcal{B}\left(n,p\right),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(n\)</span> is the number of trials and <span class="math notranslate nohighlight">\(p\)</span> is the probability of giving a specific response (e.g. “yes”). In this example, we already know that <span class="math notranslate nohighlight">\(n=20\)</span>, because each subject takes part in 20 trials. Let us say, for the purpose of illustration, that we know that the stimuli are around around 60% detectable, so <span class="math notranslate nohighlight">\(p=0.6\)</span>. Thus, our proposed data-generating process is</p>
+<div class="math notranslate nohighlight">
+\[
+y_{i} \sim \mathcal{B}\left(20,0.6\right).
+\]</div>
+<p>Here, the variation in the count of “yes” responses across subjects is generated by the fact that this is a Binomial random variate drawn from a distribution with a particular <em>mean</em> and <em>variance</em>. These elements control both the average count of “yes” responses across subjects, as well as how variable this count will be. Thus, everything we need to know about this experiment is captured within the data-generating model above.</p>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">R</span></code> to simulate data like this using the <code class="docutils literal notranslate"><span class="pre">rbinom()</span></code> function (for <code class="docutils literal notranslate"><span class="pre">r</span></code>andom <code class="docutils literal notranslate"><span class="pre">binom</span></code>ial). For instance, we can generate 20 subjects from this experiment like so</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbinom</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="o">=</span><span class="m">0.6</span><span class="p">)</span>
+<span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>8</li><li>10</li><li>9</li><li>13</li><li>13</li><li>13</li><li>9</li><li>10</li><li>11</li><li>11</li><li>12</li><li>13</li><li>8</li><li>8</li><li>9</li><li>10</li><li>9</li><li>13</li><li>12</li><li>13</li></ol>
+</div></div>
+</div>
+<div class="alert alert-block alert-info"> 
+<b>ACTIVITY</b> Try running this code a few times. Do you get the same values? Is there any way to predict what those values will be? Think about what this represents in terms of running an experiment again and again with different subjects. 
+<p><i>BONUS</i> How can you use the <code class="docutils literal notranslate"><span class="pre">set.seed()</span></code> function to make sure the random draw always gives you the same values every time? Why is this useful?</p>
+</div><p>It should be clear at this point that we have no way of predicting what any single response will be, nor how this will change from subject-to-subject. Thus, this variable is <em>unpredictable</em> in the short-term. This is the random noise component. However, in the <em>long-term</em> there is a pattern that we can use to make <em>general</em> predictions about the data. This is the systematic component.</p>
+<p>Both the <em>random noise component</em> and <em>systematic component</em> are described by different elements of the probability distribution. The random noise is captured by the <em>variance</em> and the systematic pattern is captured by the <em>expected value</em> (more generally known as the <em>mean</em>). All probability distributions have some concept of both these elements. For the Binomial distribution, these are linked to the parameters in the following way</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{alignat*}{1}
+    E(y_{i})   &amp;= np \\
+    \text{Var}\left(y_{i}\right) &amp;= np(1-p)
+\end{alignat*}
+\end{split}\]</div>
+<p>Thus, we can say how many “yes” responses we expect on average and how variable those responses are expected to be from subject-to-subject.</p>
+<div class="alert alert-block alert-info"> 
+<b>ACTIVITY</b> Create a histogram of the data generated from the binomial distribution above. Try calculating the expected value and variance using the formulas above. Do they appear to agree with what you can see? Try calculating these directly from the data using the <code>mean()</code> and <code>var()</code> functions. Are they close to the values calculated directly from the parameters? What happens if you make the sample size very large (i.e. 10,000)?
+</div></section>
+<section id="continuous-outcome-example">
+<h3>Continuous Outcome Example<a class="headerlink" href="#continuous-outcome-example" title="Link to this heading">#</a></h3>
+<p>As another example, consider the same experiment concerned with the detection of faint auditory stimuli. This time, rather than subjects responding “yes” or “no”, we ask them to press a button as soon as they are certain they can hear something. We then measure their <em>reaction time</em> (RT) in milliseconds from the start of the auditory stimulus to when they press the button to indicate they can hear it. Because RT is a continuous measure, we can therefore use a continuous distribution as our model. The usual choice would be to treat RT as a <em>normal random variate</em> of the form</p>
+<div class="math notranslate nohighlight">
+\[
+y_{i} \sim \mathcal{N}\left(\mu, \sigma^{2}\right)
+\]</div>
+<p>Again, for the purpose of illustration, let us say that we know that, on average, subjects can detect the stimuli within around 500ms, varying by around 50ms on average. So we can set <span class="math notranslate nohighlight">\(\mu = 500\)</span> and <span class="math notranslate nohighlight">\(\sigma = 50\)</span>.</p>
+<p>As with the binomial example, we can use <code class="docutils literal notranslate"><span class="pre">R</span></code> to simulate 20 subjects from this experiment using the <code class="docutils literal notranslate"><span class="pre">rnorm()</span></code> function (for <code class="docutils literal notranslate"><span class="pre">r</span></code>andom <code class="docutils literal notranslate"><span class="pre">norm</span></code>al)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="o">=</span><span class="m">500</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="o">=</span><span class="m">50</span><span class="p">)</span>
+<span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>514.456886611965</li><li>527.447660221446</li><li>525.33010480684</li><li>470.950411063117</li><li>462.270942893207</li><li>536.561085263467</li><li>487.012547488837</li><li>536.071522128372</li><li>466.505680470052</li><li>467.77968942228</li><li>437.286792563753</li><li>510.892043084487</li><li>552.54129694987</li><li>423.508385609219</li><li>552.762800444598</li><li>503.174062360473</li><li>575.439082035084</li><li>508.934093806483</li><li>499.320396516873</li><li>494.044724348197</li></ol>
+</div></div>
+</div>
+<div class="alert alert-block alert-info"> 
+<b>ACTIVITY</b> Beyond the magnitude of these values, what is the most obvious difference between drawing data from a binomial distribution and data from a normal distribution? What does this tell you about the suitability of these distributions for different kinds of data?
+</div></section>
+</section>
+<section id="determining-distributions-from-data">
+<h2>Determining Distributions from Data<a class="headerlink" href="#determining-distributions-from-data" title="Link to this heading">#</a></h2>
+<p>Given what we have said above, if we conceptualise our outcome measurements as a random variable we therefore have to decide on what probability distribution to use to model its behaviour. This is one of the trickiest aspects of this framework. In reality, unless you are using Bayesian methods, you will have very little say in this aspect. Most classical statistical techniques are built from the assumption of <em>one specific distribution</em> and we generally just have to hope that this distribution will work well for us. This means that, although there are <em>hundreds</em> of possible probability distributions, you will only ever see a handful being used in the wild. Indeed, in terms of data-generating models, applied statistics often leans heavily on the following 4:</p>
+<ol class="arabic simple">
+<li><p>Normal</p></li>
+<li><p>Poisson</p></li>
+<li><p>Binomial</p></li>
+<li><p>Gamma</p></li>
+</ol>
+<p>We do not need to go into any particular detail about these, especially as our focus on this unit is <em>exclusively</em> the normal distribution. However, it does beg the question how only 4 distributions can possibly accommodate all possible data that we might collect? The answer is that these distributions will <em>not</em> always be a perfect match. Although some special cases that use alternative distributions are available, our general approach is to decide which of the available options is <em>close enough</em>. We then apply it to the data and try to understand whether the conclusions from that model are valid enough to be useful.</p>
+<section id="how-do-we-choose-a-distribution">
+<h3>How Do We Choose a Distribution?<a class="headerlink" href="#how-do-we-choose-a-distribution" title="Link to this heading">#</a></h3>
+<p>As covered in the accompanying lesson, the first choice we need to make is whether our outcome is <em>continuous</em> or <em>discrete</em>. Could the outcome have an infinite number of possible values within a range? If so, it is <em>continuous</em>. Is the outcome constrained to only a finite number of values (usually whole numbers)? If so, it is <em>discrete</em>. From there, we can decide, from the options available to us, which distribution is most closely aligned with our data. For instance, from the 5 examples given above, we have:</p>
+<ul class="simple">
+<li><p><em>Continuous</em></p>
+<ul>
+<li><p>Normal</p></li>
+<li><p>Gamma</p></li>
+</ul>
+</li>
+<li><p><em>Discrete</em></p>
+<ul>
+<li><p>Poisson</p></li>
+<li><p>Binomial</p></li>
+</ul>
+</li>
+</ul>
+<p>So, in each case, we might first determine the <em>type</em> of outcome we have and then decide, from our small number of options, which distribution to select. We do not need to go into details about this right now, because our focus on this unit (and indeed, most of the focus of classical statistics) is on the use of the <em>normal distribution</em>. We will see later in the course the more complex methods we can use if we wish to assume other kinds of distribution.</p>
+<div class="alert alert-block alert-info"> 
+<b>ACTIVITY</b> A common type of data collected in Psychology is questionnaire scores. For instance, each subject completes a questionnaire where each item consists of a Likert scale (pronounced <i>Lick-ert</i>) from 1-5. The total score is simply the sum of the scores for each item. Say there are 5 items, what is the <i>maximum</i> score a subject could achieve? What is the <i>minimum</i> score a subject could achieve? This is our <i>range</i>. Is this outcome <i>continuous</i> or <i>discrete</i>? What if we divided the total score by the number of items to create an <i>average score</i>. Does this change anything?
+</div></section>
+<section id="how-do-we-check-the-distribution">
+<h3>How Do We Check the Distribution?<a class="headerlink" href="#how-do-we-check-the-distribution" title="Link to this heading">#</a></h3>
+<p>Although the number of available distributions is always <em>limited</em>, we still need to check whether our chosen distribution is suitable. However, this is easier said than done. Remember, the distribution we choose represents our <em>population</em>. We conceptualise our sample as a random draw from that distribution. So, how easily can we use the information in the sample to infer something about the population distribution? This is the broad question at the heart of all applied statistics.</p>
+<p>As an example, the code below shows 9 instances of drawing data from a normal distribution. Remember, because we are simulating these data we know for a <em>fact</em> that a normal distribution is correct. In this example, <span class="math notranslate nohighlight">\(n = 5\)</span>, which is a very small sample. Notice how difficult it is to assess the actual form of distribution from the sample. Based on any one of these samples, would you be confident in declaring that a normal distribution is correct?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="w">     </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span>
+<span class="n">mu</span><span class="w">    </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span>
+<span class="n">sigma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">8</span>
+
+<span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">))</span>
+
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">9</span><span class="p">){</span>
+<span class="w">    </span><span class="n">y</span><span class="w">            </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span>
+<span class="w">    </span><span class="n">sample.mu</span><span class="w">    </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="w">    </span><span class="n">sample.sigma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sd</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="nf">hist</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;mean=&quot;</span><span class="p">,</span><span class="nf">round</span><span class="p">(</span><span class="n">sample.mu</span><span class="p">,</span><span class="m">2</span><span class="p">),</span>
+<span class="w">                        </span><span class="s">&quot; sd=&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">sample.sigma</span><span class="p">,</span><span class="m">2</span><span class="p">)))</span>
+<span class="p">}</span>
+
+<span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="c1"># reset the display</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/15927845e36b787bef9b1c7ec80473c03c4796d2f6e92908a29c20a7e31aa463.png"><img alt="_images/15927845e36b787bef9b1c7ec80473c03c4796d2f6e92908a29c20a7e31aa463.png" src="_images/15927845e36b787bef9b1c7ec80473c03c4796d2f6e92908a29c20a7e31aa463.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<div class="alert alert-block alert-info"> 
+<b>ACTIVITY</b> Alter the code above for different values of <code>n</code>. At what sample size do you think assuming normality based on the shape of the sample distribution is reasonable? What does this suggest about how reliable it is to use the basic shape of the sample distribution to determine the population distribution? Now consider how variable the estimates are for the <i>mean</i> and <i>standard deviation</i>, as written in the title of each histogram. Remember, the true values are a mean of 5 and a standard deviation of 8. How does this variability change with different values of <code>n</code> and what does this suggest about our ability to accurately estimate the population parameters from a sample?
+</div><p>The point of this exercise is to highlight that we cannot be too fussy about how perfectly matched our data are to our proposed distribution. In many cases, it is very difficult to know because the variety of shapes we can get is quite large. It is common for students to be a bit obsessive over this, but hopefully this simulation highlights how our obsessiveness needs to scale with sample size. If we have <span class="math notranslate nohighlight">\(n = 10,000\)</span> and the distribution does not look normal, then we are allowed to be concerned. However, if <span class="math notranslate nohighlight">\(n = 6\)</span>, we have to realise that we are not always going to be able to tell. We will see later in the unit how this scaling is one of the reasons why inferential tests of distributional assumptions are usually a waste of time compared to simply <em>looking</em> at the distribution itself.</p>
+</section>
+<section id="what-if-we-are-wrong">
+<h3>What If We Are Wrong?<a class="headerlink" href="#what-if-we-are-wrong" title="Link to this heading">#</a></h3>
+<p>Of course, our main concern throughout all of this is whether we are <em>right</em> or <em>wrong</em> about the chosen distribution. However, this is not really the correct perspective. Remembering the famous quote from George Box, we will <em>always</em> get the distribution “wrong” because the distribution is a <em>model</em> and no model is perfect. Indeed, the distributions themseleves are mathematical abstractions of reality. They do not really <em>exist</em> in the sense that they are <em>descriptions</em> of what we see around us. As with any description, the distributions inherently require some degree of simplification. Our aim is then to choose something that is <em>as close as possible</em> such that the numbers produced by the model are useful.</p>
+<p>All that being said, we can still make choices that are <em>more appropriate</em> or <em>less appropriate</em>. Perhaps the clearest example of this is choosing between a <em>continuous</em> or <em>discrete</em> probability distribution. As an example of what can happen if we neglect the <em>type</em> of distribution, let us go back to the auditory stimuli example from earlier. Previously, we used a binomial distribution to represent the number of “yes” responses given by each subject under different conditions. However, you may have noticed from the histograms that this does not seem all that dissimilar to a normal distribution. They are both symmetric with some clear central value and tails that imply decreasing probability the further from the mean we go. Indeed, if we take <span class="math notranslate nohighlight">\(\mu = np\)</span> and <span class="math notranslate nohighlight">\(\sigma = \sqrt{np(1-p)}\)</span> then we can create a <em>normal approximation</em> to the binomial, as shown below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># binomial random variable</span>
+<span class="n">n</span><span class="w">       </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">20</span>
+<span class="n">p</span><span class="w">       </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.6</span>
+<span class="n">y.binom</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbinom</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="m">10000</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+
+<span class="c1"># normal approximation</span>
+<span class="n">mu</span><span class="w">    </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">n</span><span class="o">*</span><span class="n">p</span>
+<span class="n">sigma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">p</span><span class="o">*</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="n">p</span><span class="p">))</span>
+
+<span class="c1"># binomial histogram and normal density overlay</span>
+<span class="nf">hist</span><span class="p">(</span><span class="n">y.binom</span><span class="p">,</span><span class="w"> </span><span class="n">freq</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Binomial with Normal Approximation&quot;</span><span class="p">)</span><span class="w"> </span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">x</span><span class="m">+0.5</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="o">=</span><span class="n">sigma</span><span class="p">),</span><span class="w"> </span><span class="n">add</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/26cdeeeb131d2fcdd7909bc83aa10826ca7eb445feed2ae15db42aaba729c771.png"><img alt="_images/26cdeeeb131d2fcdd7909bc83aa10826ca7eb445feed2ae15db42aaba729c771.png" src="_images/26cdeeeb131d2fcdd7909bc83aa10826ca7eb445feed2ae15db42aaba729c771.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>So, what would happen if we decided to use a normal distribution instead of a binomial distribution as the model for this experiment? We would have a very similar <em>mean</em> and very similar <em>variance</em>, so in terms of the parameters of the distribution our conclusions would likely be the same. Indeed, the mean of the binomial is allowed to be a fractional value and thus is allowed to disagree with the discrete nature of the variable in question. So, from this perspective, there seems to be no harm done.</p>
+<p>However, the key to understanding the problems with this approach lie with what this model <em>implies</em> about the data. To see this clearly, let us have a look and see what the binomial distribution says is the probability of getting 21 “yes” responses from only 20 trials. Now, this is not the most sensible question in the world, but it is one where we should know the answer already. If the subject participated in 20 trials then it is <em>impossible</em> for them to provide 21 “yes” responses. So what does the binomial distribution say?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">pbinom</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="m">21</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="o">=</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">lower.tail</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0</div></div>
+</div>
+<p>So, quite rightly, the binomial distribution agrees that it would be <em>impossible</em> to have a subject give 21 “yes” responses when there are only 20 trials. Now, let us see what the normal approximation says</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">pnorm</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="m">21</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span><span class="w"> </span><span class="n">lower.tail</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">1.99619873845067e-05</div></div>
+</div>
+<p>So, althought this is a small value (<span class="math notranslate nohighlight">\(p = 0.00002\)</span>), it is not 0. So the normal probability model tells us that there is <em>some non-zero chance</em> of a subject giving 21 responses from only 20 trials. This is because the normal distribution extends to infinity in either direction and so there is always some non-zero probability of <em>every value</em>.  This is clearly nonsense, but highlights the sort of thing that happens when an <em>inappropriate</em> distribution is chosen to model an experiment.</p>
+<div class="alert alert-block alert-info"> 
+<b>ACTIVITY</b> Now consider the opposite situation, where someone decides to model a <i>continuous</i> outcome using the binomial distribution. What problems do you think could occur?
+</div></section>
+</section>
+<section id="mean-functions-and-variance-functions">
+<h2>Mean Functions and Variance Functions<a class="headerlink" href="#mean-functions-and-variance-functions" title="Link to this heading">#</a></h2>
+<p>So far in this workshop, all the distributions we have seen have used a <em>constant value</em> for their parameters. In terms of trying to model complex data, this approach is too limited. A much more flexible option is to define a <em>mean function</em> and a <em>variance function</em>. These allow the expected value and the variance of the distribution to change depending upon the value of other variables. This embeds the idea that, under different circumstances, we imagine that we are sampling data from <em>different</em> distributions. To be clear, we do not mean entirely different forms of distribution (e.g. a normal and a binomial), rather that the <em>parameters</em> of the distribution change. This is a key idea in statistical modelling that we will explore further in this section.</p>
+<div class="alert alert-block alert-danger"> 
+<b>KEY POINT</b> You can think of the mean function and variance functions as  <i>rules</i> that dictate what value the mean will have and what value the variance will have, depending upon the specific observation. For instance, those rules might encode how the value of the mean changes across experimental conditions, or with the value of some other continuous measurement. These rules <i>define</i> our model of the data.
+</div><section id="normal-example">
+<h3>Normal Example<a class="headerlink" href="#normal-example" title="Link to this heading">#</a></h3>
+<p>We will start with the example of a normal distribution, as this will be simpler than the binomial example. To begin with, the most basic form of a normal distribution model is as follows</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{alignat*}{1}
+    y_{i}              &amp;\sim \mathcal{N}\left(\mu_{i},\sigma^{2}_{i}\right) \\
+    E(y_{i})           &amp;= \mu_{i}                             \\
+    \text{Var}(y_{i})  &amp;= \sigma^{2}_{i}. 
+\end{alignat*}
+\end{split}\]</div>
+<p>In words, this says that observation <span class="math notranslate nohighlight">\(i\)</span> is drawn from a normal distribution parameterised by a mean <span class="math notranslate nohighlight">\(\mu_{i}\)</span> and variance <span class="math notranslate nohighlight">\(\sigma^{2}_{i}\)</span>. The <em>expected value</em> (i.e. the mean) is given by <span class="math notranslate nohighlight">\(\mu_{i}\)</span> and the <em>variance</em> is given by <span class="math notranslate nohighlight">\(\sigma^{2}_{i}\)</span>. To complete this model, we use a <em>mean function</em> and a <em>variance function</em> to apply rules that assign numeric values to both <span class="math notranslate nohighlight">\(\mu_{i}\)</span> and <span class="math notranslate nohighlight">\(\sigma^{2}_{i}\)</span>. For instance, let us continue with the detection of auditory stimuli example from above. In that context, we might define that <span class="math notranslate nohighlight">\(\mu_{i} = 500\)</span>. Thus the mean function states that, irrespective of the value of <span class="math notranslate nohighlight">\(i\)</span>, the mean will always be 500ms. We could do a similar thing with the variance function by setting, for example, <span class="math notranslate nohighlight">\(\sigma_{i} = 50\)</span>.</p>
+<p>Before we start seeing how this idea can be applied in more general situations, let us see how this could be implement as a <em>data simulation</em> in <code class="docutils literal notranslate"><span class="pre">R</span></code>. The advantage here is that we can use <code class="docutils literal notranslate"><span class="pre">R</span></code> to define both the mean and variance functions in code. This is helpful because it shows how the more abstract ideas from a mathematical models can be translated into physical code. In this instance, all we need to do is sample from a normal distribution where the mean function always returns <span class="math notranslate nohighlight">\(500\)</span> and the variance function always returns <span class="math notranslate nohighlight">\(50^2\)</span>. Simulating 20 subjects from this scenario can be achieved using the following code</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mean.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">i</span><span class="p">){</span>
+<span class="w">    </span><span class="n">mu</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">500</span>
+<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">var.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">i</span><span class="p">){</span>
+<span class="w">    </span><span class="n">sigma2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">50</span><span class="o">^</span><span class="m">2</span>
+<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">sigma2</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">nsubs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">20</span>
+<span class="n">y</span><span class="w">     </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">nsubs</span><span class="p">)</span>
+
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nsubs</span><span class="p">){</span>
+<span class="w">    </span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="o">=</span><span class="nf">mean.func</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="w"> </span><span class="n">sd</span><span class="o">=</span><span class="nf">sqrt</span><span class="p">(</span><span class="nf">var.func</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+<span class="p">}</span>
+
+<span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>453.997606284965</li><li>488.304661007992</li><li>580.347670663046</li><li>563.055029278193</li><li>492.885028023086</li><li>511.308177836916</li><li>455.967225644599</li><li>474.61512366723</li><li>548.624395566576</li><li>467.41092704098</li><li>572.388850046151</li><li>565.806540946643</li><li>516.101308523008</li><li>514.590867605263</li><li>391.16843404928</li><li>485.98432905003</li><li>528.490444943919</li><li>496.289960256625</li><li>506.391399610843</li><li>407.779001381447</li></ol>
+</div></div>
+</div>
+<p>So, this is now equivalent to the model</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{alignat*}{2}
+    y_{i}              &amp;\sim \mathcal{N}\left(\mu_{i},\sigma^{2}_{i}\right) \\
+    E(y_{i})           &amp;= \mu_{i} = 500             &amp;\text{(Mean function)}  \\
+    \text{Var}(y_{i})  &amp;= \sigma^{2}_{i} = 50^2     &amp;\text{(Variance function)}, 
+\end{alignat*}
+\end{split}\]</div>
+<p>and the code is currently just an overly-complicated way of writing <code class="docutils literal notranslate"><span class="pre">rnorm(n=20,</span> <span class="pre">mean=500,</span> <span class="pre">sd=50)</span></code>. However, we will now see how we can use this <em>structure</em> to adapt the model so that the parameter <span class="math notranslate nohighlight">\(\mu_{i}\)</span> changes depending upon additional information. This will lead to a data-generating model that can <em>accommodate</em> our experimental manipulations.</p>
+<div class="alert alert-block alert-info"> 
+<b>ACTIVITY</b> Have a play around with the value used for <code>mu</code> and the value used for <code>sigma2</code>. Make sure it is clear how the value for <code>mu</code> is affecting the <i>systematic</i> element of the generated data and how the value for <code>sigma2</code> is affecting the <i>random</i> element of the generated data. For instance, what happens if your remove the random element entirely by setting <code>sigma2 <- 0</code>? What happens if you make it very small instead? What happens when you choose a different value for <code>mu</code>?
+</div><section id="modelling-an-experimental-manipulation">
+<h4>Modelling an Experimental Manipulation<a class="headerlink" href="#modelling-an-experimental-manipulation" title="Link to this heading">#</a></h4>
+<p>To see how we can make this framework more useful, imagine that we perform some sort of experimental manipulation. For instance, perhaps we get a different group of subjects to listen to some very loud music for 5 minutes. We then get them to try and detect the same faint auditory stimuli as well. Assuming that this manipulation makes subjects <em>worse</em> at detecting the stimuli, we could conceptualise this as an <em>increase</em> in the average reaction time. In the context of our model, the experimental manipulation has caused <span class="math notranslate nohighlight">\(\mu\)</span> to change. For the sake of argument, let us say that after listening to the loud music <span class="math notranslate nohighlight">\(\mu = 700\)</span> and the data-generating process becomes</p>
+<div class="math notranslate nohighlight">
+\[
+y_{i} \sim \mathcal{N}\left(700,50\right).
+\]</div>
+<p>So, we now have a situation where the mean function <em>changes</em> the value that it returns depending upon the condition of the experiment. In other words, the rule that governs the value of the mean depends upon which experimental condition the data comes from. Thus this new rule defines a new model of our experimental scenario, where the average RT changes between the conditions. Importantly, this captures the <em>effect</em> of our experimental manipulation in terms of a 200ms shift in the mean.</p>
+<p>In terms of our code, we can do this in a very high-level conceptual way. We will learn how this is <em>actually</em> achieved mathematically later on this unit. For now, we can simply cheat a little bit and pass the mean function the name of the experimental condition and get it to change the returned value accordingly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mean.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">x</span><span class="p">){</span><span class="w"> </span>
+<span class="w">    </span><span class="c1"># default value of mu</span>
+<span class="w">    </span><span class="n">mu</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
+
+<span class="w">    </span><span class="c1"># change mu depending upon condition</span>
+<span class="w">    </span><span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;music&quot;</span><span class="p">)</span><span class="w">   </span><span class="n">mu</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">700</span><span class="w"> </span>
+<span class="w">    </span><span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;nomusic&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">mu</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">500</span><span class="w">  </span>
+
+<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">var.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">x</span><span class="p">){</span>
+<span class="w">    </span><span class="n">sigma2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">50</span><span class="o">^</span><span class="m">2</span>
+
+<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">sigma2</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1"># Simulate data from 16 subjects, 8 in the No Music condition and 8 in the Music condition</span>
+<span class="n">x</span><span class="w">     </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;nomusic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;nomusic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;nomusic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;nomusic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;nomusic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;nomusic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;nomusic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;nomusic&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">           </span><span class="s">&quot;music&quot;</span><span class="p">,</span><span class="w">   </span><span class="s">&quot;music&quot;</span><span class="p">,</span><span class="w">   </span><span class="s">&quot;music&quot;</span><span class="p">,</span><span class="w">   </span><span class="s">&quot;music&quot;</span><span class="p">,</span><span class="w">   </span><span class="s">&quot;music&quot;</span><span class="p">,</span><span class="w">   </span><span class="s">&quot;music&quot;</span><span class="p">,</span><span class="w">   </span><span class="s">&quot;music&quot;</span><span class="p">,</span><span class="w">   </span><span class="s">&quot;music&quot;</span><span class="p">)</span>
+<span class="n">nsubs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">16</span>
+<span class="n">y</span><span class="w">     </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">nsubs</span><span class="p">)</span>
+
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nsubs</span><span class="p">){</span>
+<span class="w">    </span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="o">=</span><span class="nf">mean.func</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="n">sd</span><span class="o">=</span><span class="nf">sqrt</span><span class="p">(</span><span class="nf">var.func</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">x</span><span class="p">)))</span>
+<span class="p">}</span>
+
+<span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>535.630020294607</li><li>332.394613039417</li><li>535.518810438031</li><li>488.888045767324</li><li>521.994870956868</li><li>485.588039954964</li><li>528.415820595733</li><li>553.76733827455</li><li>728.97230803588</li><li>704.710035382057</li><li>790.269852629511</li><li>713.093632782496</li><li>620.763445883332</li><li>726.132397603138</li><li>688.827413750251</li><li>607.905313535369</li></ol>
+</div></div>
+</div>
+<p>So now, based on the information passed in <code class="docutils literal notranslate"><span class="pre">x</span></code>, we have simulated data where the distribution <em>changes</em> depending upon the experimental condition. In this example, the first 8 values are from the No Music condition and the second 8 values are from the Music condition. So now, we have a data-generating model <em>that takes the experimental manipulation into account</em>.</p>
+<div class="alert alert-block alert-info"> 
+<b>ACTIVITY</b> Adapt the code above so that the <i>variance function</i> also returns a different value for each condition. For instance, perhaps different subjects are affected by the music in different ways and the variance within that condition increases to <code>sigma2 <- 70^2</code>. Thus, both the <i>systematic</i> and <i>random</i> components of the variance shift with the experimental manipulation. 
+</div><p>This very basic mean function implies that our data are drawn from <em>two</em> separate distributions, one for each condition. We can simulate what these distributions look like using the code below. This should make it clear how the experimental manipulation is conceptualised as a <em>change</em> in the parameters of the theoretical distributions that the data are drawn from.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">nsims</span><span class="w">     </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">10000</span>
+<span class="n">y.nomusic</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">nsims</span><span class="p">)</span>
+<span class="n">y.music</span><span class="w">   </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">nsims</span><span class="p">)</span>
+<span class="n">x.nomusic</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;nomusic&quot;</span><span class="p">,</span><span class="n">nsims</span><span class="p">)</span>
+<span class="n">x.music</span><span class="w">   </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;music&quot;</span><span class="p">,</span><span class="n">nsims</span><span class="p">)</span>
+
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nsims</span><span class="p">){</span>
+<span class="w">    </span><span class="n">y.nomusic</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="o">=</span><span class="nf">mean.func</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">x.nomusic</span><span class="p">),</span><span class="w"> </span><span class="n">sd</span><span class="o">=</span><span class="nf">sqrt</span><span class="p">(</span><span class="nf">var.func</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">x.nomusic</span><span class="p">)))</span>
+<span class="w">    </span><span class="n">y.music</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w">   </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="o">=</span><span class="nf">mean.func</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">x.music</span><span class="p">),</span><span class="w">   </span><span class="n">sd</span><span class="o">=</span><span class="nf">sqrt</span><span class="p">(</span><span class="nf">var.func</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">x.music</span><span class="p">)))</span>
+<span class="p">}</span>
+
+<span class="nf">hist</span><span class="p">(</span><span class="n">y.nomusic</span><span class="p">,</span><span class="w"> </span><span class="n">xlim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">300</span><span class="p">,</span><span class="m">900</span><span class="p">),</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="s">&quot;No Music&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="o">=</span><span class="s">&quot;RT&quot;</span><span class="p">)</span>
+<span class="nf">hist</span><span class="p">(</span><span class="n">y.music</span><span class="p">,</span><span class="w">   </span><span class="n">xlim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">300</span><span class="p">,</span><span class="m">900</span><span class="p">),</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Music&quot;</span><span class="p">,</span><span class="w">    </span><span class="n">xlab</span><span class="o">=</span><span class="s">&quot;RT&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/5335240fd2248d0311379c140d08ac0ab61bce58601fc29eed01062290e5d9ce.png"><img alt="_images/5335240fd2248d0311379c140d08ac0ab61bce58601fc29eed01062290e5d9ce.png" src="_images/5335240fd2248d0311379c140d08ac0ab61bce58601fc29eed01062290e5d9ce.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/d2e2bc8796cff98ebbf95b966627ae218bc9ef27498a1842b0a128d3e19e6250.png"><img alt="_images/d2e2bc8796cff98ebbf95b966627ae218bc9ef27498a1842b0a128d3e19e6250.png" src="_images/d2e2bc8796cff98ebbf95b966627ae218bc9ef27498a1842b0a128d3e19e6250.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<div class="alert alert-block alert-danger"> 
+<b>KEY POINT</b> A statistical model conceptualises every experimental manipulation as a change in the parameters of a probability distribution. How this change happens is captured by the rules that define the mean and variance functions. In combination with the distribution itself, these rules are our <i>model of the data-generating process</i>. The reasons our data appears as it does is because the mean of the distribution shifts across the two experimental conditions. This is our explanation of the <i>systematic</i> variance that we can see. The variance function then provides our explanation of the <i>random noise</i> component of the variance. Different statistical models are formed from choosing different distributions and different mean/variance functions. For example, the difference between multiple regression and an ANOVA is the <i>mean function</i>. In other words, these approaches only differ in the rules they use to change the parameters of the distribution based on additional information. The <i>structure</i> of these models is the same, the only differences lie in the mean and variance functions.
+</div></section>
+<section id="modelling-a-continuous-relationship">
+<h4>Modelling a Continuous Relationship<a class="headerlink" href="#modelling-a-continuous-relationship" title="Link to this heading">#</a></h4>
+<p>In the accompanying lesson, we gave an example of linear regression within the context of a mean function. This is a more complex function that changes the mean of the distribution in relation to some continuous predictor variable. We will not dwell on this here, as we will be covering much more about linear regression in future weeks. However, it might be useful to see how this would be implemented in code as a mean function. An example is given below, where the assumption is that <code class="docutils literal notranslate"><span class="pre">x</span></code> is now some continuous predictor variable, rather than the labels of an experimental condition.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mean.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">x</span><span class="p">){</span><span class="w"> </span>
+<span class="w">    </span><span class="n">beta.0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span>
+<span class="w">    </span><span class="n">beta.1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.9</span>
+<span class="w">    </span><span class="n">mu</span><span class="w">     </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">beta.0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">beta.1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="binomial-example">
+<h3>Binomial Example<a class="headerlink" href="#binomial-example" title="Link to this heading">#</a></h3>
+<p>We will now turn to an example of mean and variance functions within the context of a binomial distribution. Although we will not be using the binomial on the rest of this unit, the point here is to show how the concept of a mean and variance function is <em>generic</em> and can be applied to <em>any distribution</em>. This is why these ideas are so powerful as a framework for understanding how we can model <em>any kind of data</em>. Once you understand the concept of mean and variance functions, you can conceptualise any parameteric statistical model within these terms. Learn the framework once and then apply it to everything. This is how applied statistics really operates, yet this is not a perspective many Psychologists actually have.</p>
+<p>To begin with, the most basic form of a <em>mean</em> and <em>variance</em> function for the binomial distribution is as follows</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{alignat*}{1}
+    y_{i}              &amp;\sim \mathcal{B}\left(n_{i},p_{i}\right) \\
+    E(y_{i})           &amp;= n_{i}p_{i}                             \\
+    \text{Var}(y_{i})  &amp;= n_{i}p_{i}\left(1 - p_{i}\right). 
+\end{alignat*}
+\end{split}\]</div>
+<p>In words, this says that observation <span class="math notranslate nohighlight">\(i\)</span> is drawn from a binomial distribution parameterised by a parameter <span class="math notranslate nohighlight">\(n_{i}\)</span> and <span class="math notranslate nohighlight">\(p_{i}\)</span>. The <em>expected value</em> (i.e. the mean) is given by <span class="math notranslate nohighlight">\(n_{i}p_{i}\)</span>. The <em>variance</em> is given by <span class="math notranslate nohighlight">\(n_{i}p_{i}\left(1 - p_{i}\right)\)</span>. As we saw earlier, the <em>mean function</em> and the <em>variance function</em> are then the rules we use to assign numeric values to both the mean and variance. The only extra complication here is that the mean and variance are <em>functions</em> of the parameters, rather than directly being the parameters, as is the case with the normal distribution.</p>
+<p>As before, we can make this more concrete by implementing this situation as a <em>data simulation</em> in <code class="docutils literal notranslate"><span class="pre">R</span></code>. Let us go back to the example of detecting auditory stimuli, where the outcome variable is the number of “YES” responses from 20 trials. For this situation, we can specify <span class="math notranslate nohighlight">\(n_{i} = n = 20\)</span> and <span class="math notranslate nohighlight">\(p_{i} = p = 0.6\)</span> within the mean and variance functions. These values are therefore <em>constant</em> irrespective of the particular observation. The only additional complication is that we have to solve for <span class="math notranslate nohighlight">\(p\)</span> in order to parameterise the distribution. However, because <span class="math notranslate nohighlight">\(n\)</span> is also constant, this is very simple because <span class="math notranslate nohighlight">\(p = np/n = E(y_{i})/n\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mean.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">i</span><span class="p">){</span>
+<span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">20</span>
+<span class="w">    </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.6</span>
+<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">p</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">var.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">i</span><span class="p">){</span>
+<span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">20</span>
+<span class="w">    </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.6</span>
+<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">np</span><span class="o">*</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="n">p</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="n">nsubs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">20</span>
+<span class="n">y</span><span class="w">     </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">nsubs</span><span class="p">)</span>
+
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nsubs</span><span class="p">){</span>
+<span class="w">    </span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbinom</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="o">=</span><span class="nf">mean.func</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>12</li><li>14</li><li>13</li><li>14</li><li>12</li><li>14</li><li>12</li><li>13</li><li>13</li><li>12</li><li>11</li><li>11</li><li>15</li><li>8</li><li>10</li><li>17</li><li>11</li><li>11</li><li>11</li><li>13</li></ol>
+</div></div>
+</div>
+<p>So, this is now equivalent to the model</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{alignat*}{2}
+    y_{i}              &amp;\sim \mathcal{B}\left(n_{i},p_{i}\right) \\
+    E(y_{i})           &amp;= n_{i}p_{i} = 20 \times 0.6   &amp;\quad\text{(Mean functions)}                          \\
+    \text{Var}(y_{i})  &amp;= n_{i}p_{i}(1-p_{i}) = 20 \times 0.6 \times 0.4 &amp;\quad \text{(Variance function)}, 
+\end{alignat*}
+\end{split}\]</div>
+<p>and the code is currently just an overly-complicated way of writing <code class="docutils literal notranslate"><span class="pre">rbinom(n=50,</span> <span class="pre">size=20,</span> <span class="pre">prob=0.6)</span></code>. However, we will now see how we can use the exact same method as earlier to adapt the model so that the parameter <span class="math notranslate nohighlight">\(p\)</span> changes depending upon the condition of the experiment. This will lead to a data-generating model from the binomial distribution that can <em>accommodate</em> our experimental manipulations.</p>
+<section id="id1">
+<h4>Modelling an Experimental Manipulation<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<p>To see how this framework is generic irrespective of the distribution, let us go back to the example of getting a different group of subjects to listen to some very loud music for 5 minutes. We then get them to try and detect the same faint auditory stimuli as well. Assuming that this manipulation makes subjects <em>worse</em> at detecting the stimuli, we could conceptualise this as an <em>decrease</em> in the probability of saying “yes”. In other words, the experimental manipulation has caused <span class="math notranslate nohighlight">\(p\)</span> to change. For instance, perhaps after listening to the loud music, <span class="math notranslate nohighlight">\(p = 0.3\)</span> and the data-generating process becomes</p>
+<div class="math notranslate nohighlight">
+\[
+y_{i} \sim \mathcal{B}\left(20,0.3\right).
+\]</div>
+<p>So, we now have a situation where the mean function <em>changes</em> the value that it returns depending upon the condition of the experiment. Like before, the rule that governs the value of the mean depends upon which experimental condition the data comes from. The code would then be</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mean.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">x</span><span class="p">){</span><span class="w"> </span>
+<span class="w">    </span><span class="c1"># default values of p and n</span>
+<span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">20</span>
+<span class="w">    </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
+
+<span class="w">    </span><span class="c1"># change p depending upon condition</span>
+<span class="w">    </span><span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;music&quot;</span><span class="p">)</span><span class="w">   </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.6</span><span class="w"> </span>
+<span class="w">    </span><span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;nomusic&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.3</span><span class="w">  </span>
+
+<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">p</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">var.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">x</span><span class="p">){</span>
+<span class="w">    </span><span class="n">n</span><span class="w">  </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">20</span>
+<span class="w">    </span><span class="n">np</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mean.func</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="w">    </span><span class="n">p</span><span class="w">  </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">np</span><span class="o">/</span><span class="n">n</span>
+
+<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">np</span><span class="o">*</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="n">p</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="c1"># Simulate data from 16 subjects, 8 in the No Music condition and 8 in the Music condition</span>
+<span class="n">x</span><span class="w">     </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;nomusic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;nomusic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;nomusic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;nomusic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;nomusic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;nomusic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;nomusic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;nomusic&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">           </span><span class="s">&quot;music&quot;</span><span class="p">,</span><span class="w">   </span><span class="s">&quot;music&quot;</span><span class="p">,</span><span class="w">   </span><span class="s">&quot;music&quot;</span><span class="p">,</span><span class="w">   </span><span class="s">&quot;music&quot;</span><span class="p">,</span><span class="w">   </span><span class="s">&quot;music&quot;</span><span class="p">,</span><span class="w">   </span><span class="s">&quot;music&quot;</span><span class="p">,</span><span class="w">   </span><span class="s">&quot;music&quot;</span><span class="p">,</span><span class="w">   </span><span class="s">&quot;music&quot;</span><span class="p">)</span>
+<span class="n">nsubs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">16</span>
+<span class="n">n</span><span class="w">     </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">20</span>
+<span class="n">y</span><span class="w">     </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">nsubs</span><span class="p">)</span>
+
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nsubs</span><span class="p">){</span>
+<span class="w">    </span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbinom</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">=</span><span class="nf">mean.func</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>9</li><li>8</li><li>7</li><li>3</li><li>8</li><li>8</li><li>6</li><li>9</li><li>12</li><li>12</li><li>11</li><li>11</li><li>11</li><li>12</li><li>11</li><li>9</li></ol>
+</div></div>
+</div>
+<p>So now, based on the information passed in <code class="docutils literal notranslate"><span class="pre">x</span></code>, we have simulated data where the distribution <em>changes</em> depending upon the experimental condition. In this example, the first 8 values are from the No Music condition and the second 8 values are from the Music condition. So now, we have a data-generating model using the binomial distribution <em>that takes the experimental manipulation into account</em>.</p>
+<div class="alert alert-block alert-info"> 
+<b>ACTIVITY</b> As a challenge, can you adapt the code above to simulate the situation where the <i>music</i> and <i>no music</i> conditions have different numbers of trials? Say, <code>n <- 20</code> for music and <code>n <- 15</code> for non-music?. 
+</div><p>Much like before, this model captures the situation where the data from each condition as being drawn from a <em>different</em> binomial distribution. We can again see this illustrated in the histograms below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">nsims</span><span class="w">     </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">10000</span>
+<span class="n">ntrials</span><span class="w">   </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">20</span>
+<span class="n">y.nomusic</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">nsims</span><span class="p">)</span>
+<span class="n">y.music</span><span class="w">   </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">nsims</span><span class="p">)</span>
+<span class="n">x.nomusic</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;nomusic&quot;</span><span class="p">,</span><span class="n">nsims</span><span class="p">)</span>
+<span class="n">x.music</span><span class="w">   </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;music&quot;</span><span class="p">,</span><span class="n">nsims</span><span class="p">)</span>
+
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nsims</span><span class="p">){</span>
+<span class="w">    </span><span class="n">y.nomusic</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbinom</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="n">ntrials</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="o">=</span><span class="nf">mean.func</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">x.nomusic</span><span class="p">)</span><span class="o">/</span><span class="n">ntrials</span><span class="p">)</span>
+<span class="w">    </span><span class="n">y.music</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w">   </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbinom</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="n">ntrials</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="o">=</span><span class="nf">mean.func</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">x.music</span><span class="p">)</span><span class="o">/</span><span class="n">ntrials</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nf">hist</span><span class="p">(</span><span class="n">y.nomusic</span><span class="p">,</span><span class="w"> </span><span class="n">xlim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">20</span><span class="p">),</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="s">&quot;No Music&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="o">=</span><span class="s">&quot;Number of YES Responses&quot;</span><span class="p">)</span>
+<span class="nf">hist</span><span class="p">(</span><span class="n">y.music</span><span class="p">,</span><span class="w">   </span><span class="n">xlim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">20</span><span class="p">),</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Music&quot;</span><span class="p">,</span><span class="w">    </span><span class="n">xlab</span><span class="o">=</span><span class="s">&quot;Number of YES Responses&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/7aff0abcad8b8d411c7c5d77f11527f75ac734ff1cabb0174edc30691833b43d.png"><img alt="_images/7aff0abcad8b8d411c7c5d77f11527f75ac734ff1cabb0174edc30691833b43d.png" src="_images/7aff0abcad8b8d411c7c5d77f11527f75ac734ff1cabb0174edc30691833b43d.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/5adbe850e5ef19d0e845837b00d34af4a3ee20c5f6df1d06856df948a88cce0a.png"><img alt="_images/5adbe850e5ef19d0e845837b00d34af4a3ee20c5f6df1d06856df948a88cce0a.png" src="_images/5adbe850e5ef19d0e845837b00d34af4a3ee20c5f6df1d06856df948a88cce0a.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Hopefully it is clear how, much like the normal distribution example, this experimental manipulation is conceptualised as a <em>change</em> in the parameters of the probability distribution.</p>
+<div class="alert alert-block alert-success"> 
+<b>THE BIG PICTURE</b> In all the examples above, we have used different distributions, mean functions, variance functions and parameter values to <i>simulate</i> data. In each case, this is our proposed <i>data-generating process</i>. In other words, it is how we think our data came to be. However, what we do in reality is we collect some data and then propose a data-generating process with <i>unknown</i> parameter values. So, we make a decision on what form the mean and variance functions will take (e.g. a regression model or an ANOVA model) and then use the data to <i>estimate</i> the parameter values that those functions depend upon. So, we do not know what <code>mu</code> and <code>sigma2</code> are, nor what <code>p</code> is. We also do not know how these parameters might change across different experimental conditions. We start by assuming that these data-generating processes are correct (or at least, close enough), but the actual parameter values remain <i>question marks</i>. We have to use real data to try and work out what they are likely to be <i>and</i> how they might change in the presence of experimental manipulations. This is the process of statistical modelling. 
+</div></section>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>In this workshop we have tried to make some of the abstract theoretical elements of a statistical model more concrete by provding demonstrations with actual code in <code class="docutils literal notranslate"><span class="pre">R</span></code>. However, because many of these ideas remain somewhat abstract, they may not have fully settled in your mind. This is perfectly fine. Across the next few weeks we will see many examples and this framework should start to feel more comfortable. Remember, the point of all of this is to provide you with a way of conceptualising statistical models so that you can effectively analyse <em>any</em> dataset you encounter. That is what makes this framework so powerful. It is like a <em>superpower</em>. Rather than spending all your time studying flowcharts in the back of textbooks to decide what to do, you will know immediately how to craft the most suitable model for the data you have. However, because of these lofty ambitions, the framework is needfully high-level and generic at this point. If this is not a problem and you currently feel comfortable, that is excellent. However, if you do not, just have faith that by the time we are done you should be able to return to this workshop and the associated lessons and understand this content much more clearly. This also speaks to the iterative nature of learning. You need to keep coming back to things again and again once you have more information. This is the only way to develop a full understanding of this content.</p>
+<div class="alert alert-block alert-warning"> 
+<b>TEST QUESTIONS</b> 
+<p>Use the questions below to check your understanding of all the materials from this week.</p>
+<ol class="arabic simple">
+<li><p>What are the two sources of variance in any dataset?</p></li>
+<li><p>What does it mean to say that a random variable is a <i>variance generator</i>?</p></li>
+<li><p>What do the parameters <i>n</i> and <i>p</i> mean in the context of the binomial distribution?</p></li>
+<li><p>What do the parameters μ and σ mean in the context of the normal distribution?</p></li>
+<li><p>How do we usually conceptualise the <i>effect</i> of an experimental manipulation in terms of the parameters of a probability distribution?</p></li>
+<li><p>How do mean and variance functions allow the effect of an experimental manipulation to be integrated into our model of the data-generating process?</p></li>
+<li><p>Do we always have freedom to choose exactly the distribution we want to use to model our data?</p></li>
+<li><p>Can we always rely on the sample distribution to tell us whether our chosen distribution is suitable?</p></li>
+<li><p>Name one possible consequence of using a <em>continuous</em> distribution to model a <em>discrete</em> outcome.</p></li>
+<li><p>Name one possible consequence of using a <em>discrete</em> distribution to model a <em>continuous</em> outcome.</p></li>
+</ol>
+</div></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-variance">Understanding Variance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sources-of-variance">Sources of Variance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variables-as-variance-generators">Random Variables as Variance Generators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-outcome-example">Discrete Outcome Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-outcome-example">Continuous Outcome Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#determining-distributions-from-data">Determining Distributions from Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-choose-a-distribution">How Do We Choose a Distribution?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-check-the-distribution">How Do We Check the Distribution?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if-we-are-wrong">What If We Are Wrong?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-functions-and-variance-functions">Mean Functions and Variance Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normal-example">Normal Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelling-an-experimental-manipulation">Modelling an Experimental Manipulation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelling-a-continuous-relationship">Modelling a Continuous Relationship</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binomial-example">Binomial Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Modelling an Experimental Manipulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr Martyn McFarquhar & Dr George Farmer
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
