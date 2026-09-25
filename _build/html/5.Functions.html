@@ -529,7 +529,7 @@ document.write(`
 </div>
 <p>The arguments we used are <code class="docutils literal notranslate"><span class="pre">n</span></code> which is the number of samples we want, <code class="docutils literal notranslate"><span class="pre">mean</span></code> which is the mean of the normal distribution we want to sample from, and <code class="docutils literal notranslate"><span class="pre">sd</span></code>, which is the standard deviation of the distribution. Note that if you run the above code you won’t get the same values as I got because they are picked at random each time you use the function.</p>
 <p>If you want to get the same ‘random’ numbers as someone else you need to use the set.seed() function like this:</p>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">666</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span>
 <span class="n">simVals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)</span>
 <span class="n">simVals</span>
 </pre></div>
@@ -538,7 +538,7 @@ document.write(`
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[1] 107.53311 120.14355  96.44866 120.28168
 </pre></div>
 </div>
-<p>The number 666 is not special. It is simply a starting point for the random-number generator. You can use another seed, but anyone who uses the same seed and code will obtain the same random results.</p>
+<p>The number 42 is not special <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. It is simply a starting point for the random-number generator. You can use another seed, but anyone who uses the same seed and code will obtain the same random results.</p>
 </section>
 </section>
 <section id="dealing-with-nas">
@@ -568,6 +568,13 @@ document.write(`
 <p class="admonition-title">Warning</p>
 <p>It’s worth considering <em>why</em> values are missing before using <code class="docutils literal notranslate"><span class="pre">na.rm</span> <span class="pre">=</span> <span class="pre">TRUE</span></code>. If the missing participants represent a random subsample, removing them is probably reasonable. However, if missing values are overrepresented among younger or older participants, removing the <code class="docutils literal notranslate"><span class="pre">NA</span></code>s could bias the estimated mean age of the participants.</p>
 </div>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Apart from being the answer to the ultimate question of life the universe and everything.</p>
+</aside>
+</aside>
 </section>
 </section>
 
