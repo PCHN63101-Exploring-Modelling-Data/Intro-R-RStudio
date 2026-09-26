@@ -1,0 +1,709 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Functions &#8212; The Principles of Statistical Modelling</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/test.css?v=90b7ad94" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '5.Functions';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Summary" href="summary.html" />
+    <link rel="prev" title="Vectors" href="4.Vectors.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="0.intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="The Principles of Statistical Modelling - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="The Principles of Statistical Modelling - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="0.intro.html">
+                    Introduction to R
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1.What-is-R.html">What is R?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.The-RStudio-Environment.html">RStudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.Objects.html">Objects and assignment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.Vectors.html">Vectors</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary.html">Summary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/PCHN63101-Advanced-Data-Skills/principles-stat-modelling" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/PCHN63101-Advanced-Data-Skills/principles-stat-modelling/issues/new?title=Issue%20on%20page%20%2F5.Functions.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/5.Functions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Functions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arguments">Arguments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-vectorisation">Function vectorisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nesting-functions">Nesting functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-that-generate">Functions that generate</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seq"><code class="docutils literal notranslate"><span class="pre">seq()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rep"><code class="docutils literal notranslate"><span class="pre">rep()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rnorm"><code class="docutils literal notranslate"><span class="pre">rnorm()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dealing-with-nas">Dealing with NAs</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="functions">
+<h1>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h1>
+<p>R comes equipped with many useful functions that allow you to carry out tasks automatically. Returning to the kitchen analogy, functions are like kitchen gadgets: a grater, a knife, a blender, and so on. Each one is designed to make a particular job faster and easier. In R this might be  calculating a standard deviation or a mean for example.</p>
+<p>Suppose we wanted to work out the mean of the values in <code class="docutils literal notranslate"><span class="pre">scores</span></code>. We could do the arithmetic manually:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="m">55</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">65</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">60</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">70</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">65</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[1] 315
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="m">315</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[1] 63
+</pre></div>
+</div>
+<p>This would eventually give us the answer, but it is slow and error-prone. In the code above we have used operators (<code class="docutils literal notranslate"><span class="pre">+</span></code> and <code class="docutils literal notranslate"><span class="pre">/</span></code>) to perform our calculations. Instead we can use R’s <code class="docutils literal notranslate"><span class="pre">mean()</span></code> function. A function in R takes some input (in this case our vector of scores) and returns an output (in this case the mean of the scores).</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[1] 63
+</pre></div>
+</div>
+<p>We could also have assigned the output of the <code class="docutils literal notranslate"><span class="pre">mean()</span></code> function to an object like so:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">meanScore</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+<span class="n">meanScore</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[1] 63
+</pre></div>
+</div>
+<p>A function call consists of the function name followed by brackets. Inside the brackets go the arguments that tell the function what to work with or how to behave.</p>
+<p>You have already seen the combine function <code class="docutils literal notranslate"><span class="pre">c()</span></code> in the previous section.</p>
+<p>Here are some more useful functions that do roughly what their name suggests:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sum(x)</span></code> returns the sum of all the values in <code class="docutils literal notranslate"><span class="pre">x</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">length(x)</span></code> returns the count of how many values there are in <code class="docutils literal notranslate"><span class="pre">x</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min(x)</span></code> returns the smallest value in <code class="docutils literal notranslate"><span class="pre">x</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max(x)</span></code> returns the largest value in <code class="docutils literal notranslate"><span class="pre">x</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">round(x)</span></code> returns the values in <code class="docutils literal notranslate"><span class="pre">x</span></code> rounded</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sqrt(x)</span></code> returns the square roots of the values in <code class="docutils literal notranslate"><span class="pre">x</span></code></p></li>
+</ul>
+<p>Here the <code class="docutils literal notranslate"><span class="pre">x</span></code> is an argument asking for the R object on which to perform the function. These functions all have other arguments you can supply to refine how they behave.</p>
+<p>For example, suppose these are mean reaction times in seconds from five participants:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">meanRTs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2.62311</span><span class="p">,</span><span class="w"> </span><span class="m">2.71560</span><span class="p">,</span><span class="w"> </span><span class="m">1.58921</span><span class="p">,</span><span class="w"> </span><span class="m">1.66212</span><span class="p">,</span><span class="w"> </span><span class="m">2.64321</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Five decimal places is probably too many. In APA formatting we typically round to 2 decimal places. It’s also very unlikely that we would measure reaction times with that level of precision even if calculating a mean can produce a number with many digits. So we use the <code class="docutils literal notranslate"><span class="pre">round()</span></code> function:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">round</span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">meanRTs</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[1] 2.62 2.72 1.59 1.66 2.64
+</pre></div>
+</div>
+<section id="arguments">
+<h2>Arguments<a class="headerlink" href="#arguments" title="Link to this heading">#</a></h2>
+<p>Note the arguments we have supplied to the function. Arguments always go inside the brackets and tell our function how to behave. In this case the first argument was <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">meanRTs</span></code> which is telling the function which object we want it to work on. The second argument was <code class="docutils literal notranslate"><span class="pre">digits</span> <span class="pre">=</span> <span class="pre">2</span></code> which tells the function how many decimal places to round to.</p>
+<p>You don’t have to state the names of the arguments when calling a function. <code class="docutils literal notranslate"><span class="pre">round(meanRTs,2)</span></code> would have produced exactly the same result. In the latter format R is using the order in which you enter the arguments to determine which is <code class="docutils literal notranslate"><span class="pre">x</span></code> and which is <code class="docutils literal notranslate"><span class="pre">digits</span></code>. Had we typed <code class="docutils literal notranslate"><span class="pre">round(2,meanRTs)</span></code> we would not have got the correct result because our arguments would have been in the wrong order. However we could have used <code class="docutils literal notranslate"><span class="pre">round(digits</span> <span class="pre">=</span> <span class="pre">2</span> <span class="pre">,</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">rt)</span></code> because naming the arguments overrides the order in which they have been entered. It’s often a good idea to name your arguments rather than rely on the order they are entered if you are using an unfamiliar function or one with many arguments. This minimises the risk of you accidentally supplying the wrong values to an argument. Sometimes that will cause an error, but much worse is when it doesn’t cause an error and you never realise, potentially compromising your whole analysis.</p>
+<p>Another important aspect of arguments is that they often have defaults. In the <code class="docutils literal notranslate"><span class="pre">round()</span></code> function the default for <code class="docutils literal notranslate"><span class="pre">digits</span></code> is <code class="docutils literal notranslate"><span class="pre">0</span></code>, so if we don’t specify what we want digits to be, the default is applied:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">round</span><span class="p">(</span><span class="n">meanRTs</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[1] 3 3 2 2 3
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>It’s impossible to remember all the various arguments that different functions accept. For help with this just type the name of the function into the console preceded by <code class="docutils literal notranslate"><span class="pre">?</span></code>. A help file will appear in the output pane which explains what the function does and what the arguments are. So in this case you would type <code class="docutils literal notranslate"><span class="pre">?round</span></code> into the console</p>
+</div>
+</section>
+<section id="function-vectorisation">
+<h2>Function vectorisation<a class="headerlink" href="#function-vectorisation" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">round()</span></code> function is vectorised, each value in the vector has been rounded to two decimal places. Not all of the functions above are vectorised. <code class="docutils literal notranslate"><span class="pre">length()</span></code> tells you the length of the whole vector, not of the elements within it. Likewise <code class="docutils literal notranslate"><span class="pre">max()</span></code> and <code class="docutils literal notranslate"><span class="pre">min()</span></code> return just one number, as you would expect. These are summarising functions.</p>
+</section>
+<section id="nesting-functions">
+<h2>Nesting functions<a class="headerlink" href="#nesting-functions" title="Link to this heading">#</a></h2>
+<p>You can often make code more efficient my placing one function inside another. Suppose you wanted the grand mean of our reaction times rounded to one decimal place. You could place the <code class="docutils literal notranslate"><span class="pre">mean()</span></code> function inside the <code class="docutils literal notranslate"><span class="pre">round()</span></code> function like so:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">grandMeanRT</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">mean</span><span class="p">(</span><span class="n">meanRTs</span><span class="p">),</span><span class="m">1</span><span class="p">)</span>
+<span class="n">grandMeanRT</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[1] 2.2
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">mean()</span></code> function is in the <code class="docutils literal notranslate"><span class="pre">x</span></code> argument position of the <code class="docutils literal notranslate"><span class="pre">round()</span></code> function. This means that the output returned by the <code class="docutils literal notranslate"><span class="pre">mean()</span></code> function is the object that the round function works with.</p>
+</section>
+<section id="functions-that-generate">
+<h2>Functions that generate<a class="headerlink" href="#functions-that-generate" title="Link to this heading">#</a></h2>
+<p>So far we have mostly looked at functions that take an object as input and report something about it, be it a mean, maximum value, or something else. We can also use functions to generate values.</p>
+<section id="seq">
+<h3><code class="docutils literal notranslate"><span class="pre">seq()</span></code><a class="headerlink" href="#seq" title="Link to this heading">#</a></h3>
+<p>A very common one is <code class="docutils literal notranslate"><span class="pre">seq()</span></code> which creates a sequence of values. There are all sort of reasons you might want to generate a sequence but let’s imagine you have some data and you want to add a new column which indexes each row. If there were 10 rows in your dataset we could simply use:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datIndex</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="m">1</span><span class="p">)</span>
+<span class="n">datIndex</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[1] 1 2 3 4 5 6 7 8 9 10
+</pre></div>
+</div>
+<p>The arguments we used in the <code class="docutils literal notranslate"><span class="pre">seq()</span></code> function call were <code class="docutils literal notranslate"><span class="pre">from</span></code>, <code class="docutils literal notranslate"><span class="pre">to</span></code> and <code class="docutils literal notranslate"><span class="pre">by</span></code>. Which represent the start, end and step size of the sequence you want to generate.</p>
+</section>
+<section id="rep">
+<h3><code class="docutils literal notranslate"><span class="pre">rep()</span></code><a class="headerlink" href="#rep" title="Link to this heading">#</a></h3>
+<p>Another useful function is <code class="docutils literal notranslate"><span class="pre">rep()</span></code> which repeats values you give it. Suppose we had 2 rows per participant in some data and we wanted a vector that identified participants.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pcpID</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="nf">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="n">each</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="n">pcpID</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[1] 1 1 2 2 3 3 4 4 5 5
+</pre></div>
+</div>
+<p>In the code above we have nested <code class="docutils literal notranslate"><span class="pre">seq()</span></code> inside <code class="docutils literal notranslate"><span class="pre">rep()</span></code>. The <code class="docutils literal notranslate"><span class="pre">seq()</span></code> function returns the sequence 1,2,3,4,5 and then the <code class="docutils literal notranslate"><span class="pre">repeat()</span></code> function repeats each value twice as specified by the <code class="docutils literal notranslate"><span class="pre">each</span> <span class="pre">=</span> <span class="pre">2</span></code> argument.</p>
+</section>
+<section id="rnorm">
+<h3><code class="docutils literal notranslate"><span class="pre">rnorm()</span></code><a class="headerlink" href="#rnorm" title="Link to this heading">#</a></h3>
+<p>Sometimes we want to generate random numbers, perhaps to simulate some data, and we can do this using the <code class="docutils literal notranslate"><span class="pre">rnorm()</span></code> function which picks numbers at random from a normal distribution:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">simVals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)</span>
+<span class="n">simVals</span>
+</pre></div>
+</div>
+<p>Which produces:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="m">101.5428</span><span class="w"> </span><span class="m">106.5785</span><span class="w"> </span><span class="m">101.4479</span><span class="w"> </span><span class="m">112.8105</span>
+</pre></div>
+</div>
+<p>The arguments we used are <code class="docutils literal notranslate"><span class="pre">n</span></code> which is the number of samples we want, <code class="docutils literal notranslate"><span class="pre">mean</span></code> which is the mean of the normal distribution we want to sample from, and <code class="docutils literal notranslate"><span class="pre">sd</span></code>, which is the standard deviation of the distribution. Note that if you run the above code you won’t get the same values as I got because they are picked at random each time you use the function.</p>
+<p>If you want to get the same ‘random’ numbers as someone else you need to use the set.seed() function like this:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span>
+<span class="n">simVals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)</span>
+<span class="n">simVals</span>
+</pre></div>
+</div>
+<p>which <strong>will</strong> result in:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[1] 107.53311 120.14355  96.44866 120.28168
+</pre></div>
+</div>
+<p>The number 42 is not special <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. It is simply a starting point for the random-number generator. You can use another seed, but anyone who uses the same seed and code will obtain the same random results.</p>
+</section>
+</section>
+<section id="dealing-with-nas">
+<h2>Dealing with NAs<a class="headerlink" href="#dealing-with-nas" title="Link to this heading">#</a></h2>
+<p>As we saw in the previous section a vector can contain missing values, which in R are represented by <code class="docutils literal notranslate"><span class="pre">NA</span></code>. Here’s some imaginary data in which two participants have forgotten to report their age:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ages</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">18</span><span class="p">,</span><span class="m">20</span><span class="p">,</span><span class="m">21</span><span class="p">,</span><span class="m">22</span><span class="p">,</span><span class="kc">NA</span><span class="p">,</span><span class="m">19</span><span class="p">,</span><span class="m">19</span><span class="p">,</span><span class="m">20</span><span class="p">,</span><span class="kc">NA</span><span class="p">)</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>What happens when we try and calculate the mean age of our participants?</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">mean</span><span class="p">(</span><span class="n">ages</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>results in:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[1] NA
+</pre></div>
+</div>
+<p>R is telling you that the mean can’t be calculated because there are missing values in the vector. If you nonetheless want the mean of the values that are available, you can use the <code class="docutils literal notranslate"><span class="pre">na.rm</span></code> argument and set it to <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> like so:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">mean</span><span class="p">(</span><span class="n">ages</span><span class="p">,</span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>results in:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[1] 19.85714
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">na.rm</span></code> argument simply tells the <code class="docutils literal notranslate"><span class="pre">mean()</span></code> function to remove the <code class="docutils literal notranslate"><span class="pre">NA</span></code> values from the calculation. You will find the <code class="docutils literal notranslate"><span class="pre">na.rm</span></code> argument in many other functions besides <code class="docutils literal notranslate"><span class="pre">mean()</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>It’s worth considering <em>why</em> values are missing before using <code class="docutils literal notranslate"><span class="pre">na.rm</span> <span class="pre">=</span> <span class="pre">TRUE</span></code>. If the missing participants represent a random subsample, removing them is probably reasonable. However, if missing values are overrepresented among younger or older participants, removing the <code class="docutils literal notranslate"><span class="pre">NA</span></code>s could bias the estimated mean age of the participants.</p>
+</div>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Apart from being the answer to the ultimate question of life the universe and everything.</p>
+</aside>
+</aside>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="4.Vectors.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Vectors</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="summary.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Summary</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arguments">Arguments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-vectorisation">Function vectorisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nesting-functions">Nesting functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-that-generate">Functions that generate</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seq"><code class="docutils literal notranslate"><span class="pre">seq()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rep"><code class="docutils literal notranslate"><span class="pre">rep()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rnorm"><code class="docutils literal notranslate"><span class="pre">rnorm()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dealing-with-nas">Dealing with NAs</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr Martyn McFarquhar & Dr George Farmer
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
