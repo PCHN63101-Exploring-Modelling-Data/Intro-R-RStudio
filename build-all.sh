@@ -7,3 +7,4 @@ read commitMessage
 git add -A
 git commit -m "$commitMessage"
 git push
+ghp-import -n -p -f _build/html
