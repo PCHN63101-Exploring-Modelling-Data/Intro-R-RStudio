@@ -514,7 +514,7 @@
 </pre></div>
 </div>
 <p>The arguments we used are <code class="docutils literal notranslate"><span class="pre">n</span></code> which is the number of samples we want, <code class="docutils literal notranslate"><span class="pre">mean</span></code> which is the mean of the normal distribution we want to sample from, and <code class="docutils literal notranslate"><span class="pre">sd</span></code>, which is the standard deviation of the distribution. Note that if you run the above code you won’t get the same values as I got because they are picked at random each time you use the function.</p>
-<p>If you want to get the same ‘random’ numbers as someone else you need to use the set.seed() function like this:</p>
+<p>If you want to get the same ‘random’ numbers as someone else you need to use the <code class="docutils literal notranslate"><span class="pre">set.seed()</span></code> function like this:</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span>
 <span class="n">simVals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)</span>
 <span class="n">simVals</span>
